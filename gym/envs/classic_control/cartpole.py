@@ -64,9 +64,9 @@ class CartPoleEnv(gym.Env):
     }
 
     def __init__(self):
-        self.gravity = 9.8
+        self.gravity = 19.8
         self.masscart = 1.0
-        self.masspole = 0.1
+        self.masspole = 0.5
         self.total_mass = (self.masspole + self.masscart)
         self.length = 0.5  # actually half the pole's length
         self.polemass_length = (self.masspole * self.length)
@@ -159,8 +159,8 @@ class CartPoleEnv(gym.Env):
         return np.array(self.state)
 
     def render(self, mode='human'):
-        screen_width = 600
-        screen_height = 400
+        screen_width = 800
+        screen_height = 700
 
         world_width = self.x_threshold * 2
         scale = screen_width/world_width
@@ -181,7 +181,7 @@ class CartPoleEnv(gym.Env):
             self.viewer.add_geom(cart)
             l, r, t, b = -polewidth / 2, polewidth / 2, polelen - polewidth / 2, -polewidth / 2
             pole = rendering.FilledPolygon([(l, b), (l, t), (r, t), (r, b)])
-            pole.set_color(.8, .6, .4)
+            pole.set_color(.8, .6, .8)
             self.poletrans = rendering.Transform(translation=(0, axleoffset))
             pole.add_attr(self.poletrans)
             pole.add_attr(self.carttrans)
